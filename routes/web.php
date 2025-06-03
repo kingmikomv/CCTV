@@ -36,5 +36,11 @@ Route::prefix('/home/produk')->controller(ProdukController::class)->group(functi
     // PRODUK
     Route::get('/dataProduk', 'dataProduk')->name('dataProduk');
     Route::post('/dataProduk/uploadProduk', 'uploadProduk')->name('uploadProduk');
+    Route::put('/dataProduk/updateProduk/{id}', 'updateProduk')->name('updateProduk');
+    Route::get('/dataProduk/hapusProduk/{id}', 'hapusProduk')->name('hapusProduk');
+
+    Route::post('/dataProduk/bulk-action', 'bulkAction')->name('produk.bulk-action');
+
+
 
 })->middleware(['can:isAdmin']);

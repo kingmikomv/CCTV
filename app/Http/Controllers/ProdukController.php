@@ -76,6 +76,72 @@ class ProdukController extends Controller
 
 
 
+    public function updateProduk(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'kode_produk' => 'required|string|max:100',
+            'nama_produk' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategori,id',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
+            'status' => 'required|in:aktif,nonaktif',
+        ]);
+
+        // Ambil produk berdasarkan ID
+        $produk = Produk::findOrFail($id);
+
+        // Update data produk
+        $produk->kode_produk = $request->kode_produk;
+        $produk->nama_produk = $request->nama_produk;
+        $produk->kategori_id = $request->kategori_id;
+        $produk->harga = $request->harga;
+        $produk->stok = $request->stok;
+        $produk->status = $request->status;
+        $produk->save();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->back()->with('success', 'Produk berhasil diperbarui.');
+    }
+    public function bulkAction(Request $request)
+    {
+        $ids = $request->input('selected');
+        $action = $request->input('action');
+
+        if (!$ids || !is_array($ids)) {
+            return back()->with('error', 'Tidak ada produk yang dipilih.');
+        }
+
+        switch ($action) {
+            case 'ubah_stok':
+                $stokBaru = $request->input('stok_baru');
+                Produk::whereIn('id', $ids)->update(['stok' => $stokBaru]);
+                return back()->with('success', 'Stok berhasil diperbarui.');
+
+            case 'hapus':
+                Produk::whereIn('id', $ids)->delete();
+                return back()->with('success', 'Produk berhasil dihapus.');
+
+            case 'ubah_status':
+                foreach ($ids as $id) {
+                    $produk = Produk::find($id);
+                    if ($produk) {
+                        $produk->status = $produk->status === 'aktif' ? 'nonaktif' : 'aktif';
+                        $produk->save();
+                    }
+                }
+                return back()->with( 'success', 'Status berhasil diubah.');
+
+            default:
+                return back()->with('error', 'Aksi tidak dikenali.');
+        }
+    }
+
+    public function hapusProduk(Request $request){
+        Produk::find($request->id)->delete();
+        return back()->with( 'success', 'Produk berhasil hapus.');
+
+    }
     public function kategoriProduk()
     {
         $kategoris = kategori::withCount('produk')->get();
