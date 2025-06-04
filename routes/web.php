@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DepanController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,16 @@ Route::prefix('/')->controller(DepanController::class)->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::prefix('/home/pelanggan')->controller(PelangganController::class)->group(function ($id = null) {
+    Route::get('/dataPelanggan', 'dataPelanggan')->name('dataPelanggan');
+    Route::get('/dataPelanggan/{id}/beliProduk', 'beliProduk')->name('beliProduk');
+        Route::post('/dataPelanggan/{id}/beliProduk/uploadPembelian', 'uploadPembelian')->name('uploadPembelian');
+
+    Route::post('/dataPelanggan/uploadPelanggan', 'uploadPelanggan')->name('uploadPelanggan');
+
+})->middleware(['can:isAdmin']);
 
 
 Route::prefix('/home/produk')->controller(ProdukController::class)->group(function () {

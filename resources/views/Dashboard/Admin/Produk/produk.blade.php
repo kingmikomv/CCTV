@@ -433,6 +433,13 @@
         $('input[name="selected[]"]').prop('checked', checked);
     });
 </script>
+<script>
+  tinymce.init({
+    selector: '#deskripsi', // sesuaikan ID textarea kamu
+    menubar: false
+  });
+</script>
+
 
 </body>
 
