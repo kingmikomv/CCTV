@@ -9,13 +9,11 @@ class Pembelian extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'pelanggan_id',
-        'status_pemasangan',
-        'status_pembayaran',
-        'produk_id',
-        'pembelian_id',
-    ];
+    protected $guarded = [];
+protected $casts = [
+    'tanggal_pemasangan' => 'date', // atau 'datetime'
+    'tanggal_pembayaran' => 'date',
+];
 
     // Relasi (optional, jika ingin relasi ke tabel lain)
     public function pelanggan()

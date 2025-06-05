@@ -16,7 +16,7 @@ return new class extends Migration {
     $table->foreignId('pelanggan_id')->constrained('pelanggans')->onDelete('cascade');
     $table->foreignId('produk_id')->constrained('produk')->onDelete('cascade');
     $table->string('qrcode')->nullable();
-
+    $table->text('alamat')->nullable();
     // Status
     $table->string('status_pembayaran')->nullable();
     $table->string('status_pemasangan')->nullable();

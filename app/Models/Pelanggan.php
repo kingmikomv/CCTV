@@ -20,5 +20,9 @@ public function produk()
 {
     return $this->belongsToMany(Produk::class, 'pembelians');
 }
+public function pembelian()
+{
+    return $this->hasMany(Pembelian::class);
+}
 
 }

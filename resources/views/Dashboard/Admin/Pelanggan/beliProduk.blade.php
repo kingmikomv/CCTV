@@ -20,9 +20,10 @@
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <h5 class="mb-0">Tambah Pembelian</h5>
                                     </div>
-
+ <x-Dashboard.alert />
                                     <div class="card-body p-3">
-                                        <form action="{{ route('uploadPembelian', $pelanggan->id) }}" method="POST" enctype="multipart/form-data" class="p-4 border rounded bg-light">
+                                        <form action="{{ route('uploadPembelian', $pelanggan->id) }}" method="POST"
+                                            enctype="multipart/form-data" class="p-4 border rounded bg-light">
                                             @csrf
                                             <input type="hidden" name="pelanggan_id" value="{{ $pelanggan->id }}">
 
@@ -41,7 +42,8 @@
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label fw-semibold">Status Pemasangan</label>
                                                     <select name="status_pemasangan" class="form-select" required>
-                                                        <option value="" disabled selected>-- Pilih Status --</option>
+                                                        <option value="" disabled selected>-- Pilih Status --
+                                                        </option>
                                                         <option value="Belum Dipasang">Belum Terpasang</option>
                                                         <option value="Sudah Dipasang">Terpasang</option>
                                                     </select>
@@ -49,7 +51,8 @@
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label fw-semibold">Status Pembayaran</label>
                                                     <select name="status_pembayaran" class="form-select" required>
-                                                        <option value="" disabled selected>-- Pilih Status --</option>
+                                                        <option value="" disabled selected>-- Pilih Status --
+                                                        </option>
                                                         <option value="Belum Dibayar">Belum Dibayar</option>
                                                         <option value="Sudah Dibayar">Lunas</option>
                                                     </select>
@@ -62,25 +65,34 @@
                                                 <select id="produkSelect" name="produk_id" class="form-select" required>
                                                     <option value="" disabled selected>-- Pilih Produk --</option>
                                                     @foreach ($produk as $prod)
-                                                        <option value="{{ $prod->id }}" data-harga="{{ $prod->harga }}">{{ $prod->nama_produk }}</option>
+                                                        <option value="{{ $prod->id }}"
+                                                            data-harga="{{ $prod->harga }}">{{ $prod->nama_produk }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label fw-semibold">Kode Pembelian</label>
-                                                <input id="kodePembelian" type="text" name="pembelian_id" class="form-control" readonly>
+                                                <input id="kodePembelian" type="text" name="pembelian_id"
+                                                    class="form-control" readonly>
                                             </div>
-
+                                            <div class="mb-3">
+                                                <label class="form-label fw-semibold">Alamat</label>
+                                                <textarea name="alamat" rows="3" class="form-control"></textarea>
+                                            </div>
                                             <!-- Informasi Pemasangan -->
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label fw-semibold">Tanggal Pemasangan</label>
-                                                    <input type="date" name="tanggal_pemasangan" class="form-control">
+                                                    <input type="date" name="tanggal_pemasangan"
+                                                        class="form-control">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="form-label fw-semibold">Jumlah Kamera Terpasang</label>
-                                                    <input type="number" name="jumlah_kamera_terpasang" class="form-control">
+                                                    <label class="form-label fw-semibold">Jumlah Kamera
+                                                        Terpasang</label>
+                                                    <input type="number" name="jumlah_kamera_terpasang"
+                                                        class="form-control">
                                                 </div>
                                             </div>
 
@@ -93,7 +105,8 @@
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label fw-semibold">Tipe Perekam</label>
                                                     <select name="tipe_perekam" class="form-select">
-                                                        <option value="" disabled selected>-- Pilih Tipe --</option>
+                                                        <option value="" disabled selected>-- Pilih Tipe --
+                                                        </option>
                                                         <option value="DVR">DVR</option>
                                                         <option value="NVR">NVR</option>
                                                     </select>
@@ -106,7 +119,8 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label fw-semibold">Jumlah & Ukuran Harddisk</label>
-                                                <input type="text" name="jumlah_ukuran_harddisk" class="form-control" placeholder="Contoh: 2x1TB">
+                                                <input type="text" name="jumlah_ukuran_harddisk" class="form-control"
+                                                    placeholder="Contoh: 2x1TB">
                                             </div>
 
                                             <div class="mb-3">
@@ -122,7 +136,8 @@
                                             <!-- Akses & Akun -->
                                             <div class="mb-3">
                                                 <label class="form-label fw-semibold">Jenis Akses</label>
-                                                <input type="text" name="jenis_akses" class="form-control" placeholder="Contoh: aplikasi mobile">
+                                                <input type="text" name="jenis_akses" class="form-control"
+                                                    placeholder="Contoh: aplikasi mobile">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
@@ -142,23 +157,27 @@
                                             <!-- Biaya -->
                                             <div class="mb-3">
                                                 <label class="form-label fw-semibold">Total Biaya Pemasangan</label>
-                                                <input type="number" name="total_biaya_pemasangan" class="form-control">
+                                                <input type="number" name="total_biaya_pemasangan"
+                                                    class="form-control">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label fw-semibold">Rincian Biaya</label>
-                                                <textarea name="rincian_biaya" rows="4" class="form-control" placeholder="Contoh: CCTV: 2jt, DVR: 1jt, Kabel: 500rb, Jasa: 1jt"></textarea>
+                                                <textarea name="rincian_biaya" rows="4" class="form-control"
+                                                    placeholder="Contoh: CCTV: 2jt, DVR: 1jt, Kabel: 500rb, Jasa: 1jt"></textarea>
                                             </div>
 
                                             <!-- Pembayaran -->
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label fw-semibold">Tanggal Pembayaran</label>
-                                                    <input type="date" name="tanggal_pembayaran" class="form-control">
+                                                    <input type="date" name="tanggal_pembayaran"
+                                                        class="form-control">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label class="form-label fw-semibold">Metode Pembayaran</label>
                                                     <select name="metode_pembayaran" class="form-select">
-                                                        <option value="" disabled selected>-- Pilih Metode --</option>
+                                                        <option value="" disabled selected>-- Pilih Metode --
+                                                        </option>
                                                         <option value="Cash">Cash</option>
                                                         <option value="Transfer">Transfer</option>
                                                     </select>
@@ -171,19 +190,25 @@
                                                 <input type="file" name="bukti_transfer" class="form-control">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label fw-semibold">Foto-foto Instalasi (awal & akhir)</label>
-                                                <input type="file" name="foto_instalasi[]" class="form-control" multiple>
+                                                <label class="form-label fw-semibold">Foto-foto Instalasi (awal &
+                                                    akhir)</label>
+                                                <input type="file" name="foto_instalasi[]" class="form-control"
+                                                    multiple>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label fw-semibold">Upload Gambar Denah Lokasi</label>
-                                                <input type="file" name="gambar_denah_lokasi" class="form-control">
+                                                <label class="form-label fw-semibold">Upload Gambar Denah
+                                                    Lokasi</label>
+                                                <input type="file" name="gambar_denah_lokasi"
+                                                    class="form-control">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label fw-semibold">Upload Bukti Transaksi / Kwitansi</label>
+                                                <label class="form-label fw-semibold">Upload Bukti Transaksi /
+                                                    Kwitansi</label>
                                                 <input type="file" name="bukti_transaksi" class="form-control">
                                             </div>
 
-                                            <button type="submit" class="btn btn-primary w-100">Simpan Pembelian</button>
+                                            <button type="submit" class="btn btn-primary w-100">Simpan
+                                                Pembelian</button>
                                         </form>
                                     </div>
                                 </div>
@@ -202,26 +227,27 @@
 
     <x-Dashboard.script />
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const produkSelect = document.getElementById('produkSelect');
-        const kodePembelianInput = document.getElementById('kodePembelian');
-        const pelangganId = "{{ $pelanggan->id }}";
+        document.addEventListener('DOMContentLoaded', function() {
+            const produkSelect = document.getElementById('produkSelect');
+            const kodePembelianInput = document.getElementById('kodePembelian');
+            const pelangganId = "{{ $pelanggan->id }}";
 
-        produkSelect.addEventListener('change', function () {
-            // Format tanggal: ddmmyy
-            const today = new Date();
-            const dd = String(today.getDate()).padStart(2, '0');
-            const mm = String(today.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-            const yy = String(today.getFullYear()).slice(-2);
+            produkSelect.addEventListener('change', function() {
+                // Format tanggal: ddmmyy
+                const today = new Date();
+                const dd = String(today.getDate()).padStart(2, '0');
+                const mm = String(today.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                const yy = String(today.getFullYear()).slice(-2);
 
-            // Random alphanumeric string (3 chars)
-            const random = Math.random().toString(36).substring(2, 5).toUpperCase();
+                // Random alphanumeric string (3 chars)
+                const random = Math.random().toString(36).substring(2, 5).toUpperCase();
 
-            const kode = `#${dd}${mm}${yy}${pelangganId}${random}`;
-            kodePembelianInput.value = kode;
+                const kode = `#${dd}${mm}${yy}${pelangganId}${random}`;
+                kodePembelianInput.value = kode;
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
+
 </html>

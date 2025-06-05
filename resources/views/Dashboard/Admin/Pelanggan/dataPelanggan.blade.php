@@ -25,6 +25,7 @@
                                         </button>
                                     </div>
                                     <div class="card-body p-3">
+                                        <x-Dashboard.alert />
                                         <div class="table-responsive">
                                             <table class="table table-bordered table-striped">
                                                 <thead>
@@ -33,6 +34,7 @@
                                                         <th>Nomor HP</th>
                                                         <th>Alamat</th>
                                                         <th>Produk Dibeli</th>
+                                                        <th>Beli</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -43,19 +45,25 @@
                                                             <td>{{ $item->no_hp }}</td>
                                                             <td>{{ $item->alamat }}</td>
                                                             <td>
-                                                                @if ($item->produk->count())
+                                                                @forelse ($item->produk as $produk)
                                                                     <ul class="mb-0 ps-3">
-                                                                        @foreach ($item->produk as $produk)
-                                                                            <li>{{ $produk->nama_produk }}</li>
-                                                                        @endforeach
+                                                                        <li>{{ $produk->nama_produk }}</li>
                                                                     </ul>
-                                                                @else
+                                                                @empty
                                                                     <span class="text-muted">Belum ada produk</span>
-                                                                @endif
+                                                                @endforelse
+
                                                             </td>
                                                             <td>
-                                                                <a class="btn btn-sm btn-success" href="{{route('beliProduk', $item->id)}}">
-                                                                    Beli Produk
+                                                                <a class="btn btn-sm btn-success"
+                                                                    href="{{ route('beliProduk', $item->id) }}">
+                                                                    Beli
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-sm btn-primary"
+                                                                    href="{{ route('detailPelanggan', $item->id) }}">
+                                                                    Detail
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -115,7 +123,7 @@
                                 </div>
 
                                 <!-- Modal Beli Produk -->
-                             
+
                             </div>
                         </div>
                     </div>
@@ -131,7 +139,7 @@
 
     <x-Dashboard.script />
 
-    
+
 
 </body>
 

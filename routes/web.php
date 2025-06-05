@@ -31,7 +31,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('/home/pelanggan')->controller(PelangganController::class)->group(function ($id = null) {
     Route::get('/dataPelanggan', 'dataPelanggan')->name('dataPelanggan');
     Route::get('/dataPelanggan/{id}/beliProduk', 'beliProduk')->name('beliProduk');
-        Route::post('/dataPelanggan/{id}/beliProduk/uploadPembelian', 'uploadPembelian')->name('uploadPembelian');
+    Route::get('/dataPelanggan/{id}/detailPelanggan', 'detailPelanggan')->name('detailPelanggan');
+
+    Route::post('/dataPelanggan/{id}/beliProduk/uploadPembelian', 'uploadPembelian')->name('uploadPembelian');
 
     Route::post('/dataPelanggan/uploadPelanggan', 'uploadPelanggan')->name('uploadPelanggan');
 
