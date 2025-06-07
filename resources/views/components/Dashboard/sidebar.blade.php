@@ -162,7 +162,7 @@
 @elsecan('isUser')
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="{{route('home')}}" class="app-brand-link">
                 <span class="app-brand-logo demo">
                     <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -207,7 +207,7 @@
                         </g>
                     </svg>
                 </span>
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">CTVAQT</span>
+                <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform: uppercase">AQT Vision</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -220,7 +220,7 @@
         <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-                <a href="index.html" class="menu-link">
+                <a href="{{route('home')}}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Dashboard</div>
                 </a>
@@ -238,16 +238,22 @@
             <!-- Forms & Tables -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Informasi</span></li>
             <!-- Forms -->
+           
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-detail"></i>
-                    <div data-i18n="Form Elements">Pelayanan</div>
+                    <i class="menu-icon tf-icons bx bx-cog"></i>
+                    <div data-i18n="Form Elements">Layanan</div>
                 </a>
                 <ul class="menu-sub">
 
                     <li class="menu-item">
+                        <a href="{{route('perangkatSaya')}}" class="menu-link">
+                            <div data-i18n="Input groups">Perangkat Saya</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
                         <a href="forms-input-groups.html" class="menu-link">
-                            <div data-i18n="Input groups">Laporan</div>
+                            <div data-i18n="Input groups">Pembelian Saya</div>
                         </a>
                     </li>
                 </ul>

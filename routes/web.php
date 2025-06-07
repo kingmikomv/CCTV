@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepanController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProdukController;
@@ -31,11 +32,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('/home/pelanggan')->controller(PelangganController::class)->group(function ($id = null) {
     Route::get('/dataPelanggan', 'dataPelanggan')->name('dataPelanggan');
     Route::get('/dataPelanggan/{id}/beliProduk', 'beliProduk')->name('beliProduk');
-    Route::get('/dataPelanggan/{id}/detailPelanggan', 'detailPelanggan')->name('detailPelanggan');
-
     Route::post('/dataPelanggan/{id}/beliProduk/uploadPembelian', 'uploadPembelian')->name('uploadPembelian');
+    Route::get('/dataPelanggan/{id}/detailPelanggan', 'detailPelanggan')->name('detailPelanggan');
+    Route::get('/dataPelanggan/{id}/detailPelanggan/editDetail', 'editDetail')->name('editDetail');
+    Route::put('/dataPelanggan/{id}/detailPelanggan/editDetail/updateDetail', 'updateDetail')->name('updateDetail');
+    Route::get('/dataPelanggan/{id}/detailPelanggan/hapusDetail', 'hapusDetail')->name('hapusDetail');
 
+
+
+    
     Route::post('/dataPelanggan/uploadPelanggan', 'uploadPelanggan')->name('uploadPelanggan');
+    Route::put('/dataPelanggan/{id}/updatePelanggan', 'updatePelanggan')->name('updatePelanggan');
+    Route::delete('/dataPelanggan/{id}/hapusPelanggan', 'hapusPelanggan')->name('hapusPelanggan');
+
 
 })->middleware(['can:isAdmin']);
 
@@ -57,3 +66,11 @@ Route::prefix('/home/produk')->controller(ProdukController::class)->group(functi
 
 
 })->middleware(['can:isAdmin']);
+
+
+/////////////////////// USER
+
+
+Route::prefix('/home/layananUser')->controller(ClientController::class)->group(function () {
+    Route::get('/perangkatSaya', 'perangkatSaya')->name('perangkatSaya');
+})->middleware(['can:isUser']);

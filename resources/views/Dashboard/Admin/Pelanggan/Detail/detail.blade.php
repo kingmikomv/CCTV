@@ -43,7 +43,7 @@
                                                     class="text-primary">{{ $pembelian->nama }}</span></p>
                                             <p>No HP: <span class="text-primary">{{ $pembelian->no_hp }}</span></p>
                                         </div>
-
+                                        <x-Dashboard.alert />
                                         <!-- Accordion for Pembelian Details -->
                                         <div class="accordion" id="accordionExample">
                                             @foreach ($data as $index => $pembeli)
@@ -54,7 +54,7 @@
                                                             data-bs-target="#collapse{{ $index }}"
                                                             aria-expanded="false"
                                                             aria-controls="collapse{{ $index }}">
-                                                            {{$pembeli->produk->nama_produk}}
+                                                            {{ $pembeli->produk->nama_produk }}
 
                                                         </button>
                                                     </h2>
@@ -66,9 +66,19 @@
                                                         <div class="accordion-body">
                                                             <hr>
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-12">
+                                                                    <a href="{{route('editDetail', $pembeli->id)}}"
+                                                                        class="btn btn-block btn-warning"><i
+                                                                            class="bx bx-edit"></i> Edit</a>
+                                                                    <a href="{{route('hapusDetail', $pembeli->id)}}"
+                                                                        class="btn btn-block btn-danger"><i
+                                                                            class="bx bx-trash"></i> Hapus</a>
+
+                                                                </div>
+                                                                <div class="col-md-6 mt-3">
                                                                     <p><strong>Status Pembayaran:</strong>
-                                                                        {{ $pembeli->status_pembayaran ?? '-' }} - {{$pembeli->pembelian_id}}</p>
+                                                                        {{ $pembeli->status_pembayaran ?? '-' }} -
+                                                                        {{ $pembeli->pembelian_id }}</p>
 
                                                                     <p><strong>Tanggal Pemasangan:</strong>
                                                                         {{ $pembeli->tanggal_pemasangan ? $pembeli->tanggal_pemasangan->format('d-m-Y') : '-' }}
