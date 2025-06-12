@@ -11,18 +11,21 @@ class Pelanggan extends Model
     use HasFactory;
     protected $table = 'pelanggans';
     protected $guarded = [];
-   public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-public function produk()
-{
-    return $this->belongsToMany(Produk::class, 'pembelians');
-}
-public function pembelian()
-{
-    return $this->hasMany(Pembelian::class);
-}
-
+    public function produk()
+    {
+        return $this->belongsToMany(Produk::class, 'pembelians');
+    }
+    public function pembelian()
+    {
+        return $this->hasMany(Pembelian::class);
+    }
+    public function gangguans()
+    {
+        return $this->hasMany(Gangguan::class);
+    }
 }

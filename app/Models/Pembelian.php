@@ -10,10 +10,10 @@ class Pembelian extends Model
     use HasFactory;
 
     protected $guarded = [];
-protected $casts = [
-    'tanggal_pemasangan' => 'date', // atau 'datetime'
-    'tanggal_pembayaran' => 'date',
-];
+    protected $casts = [
+        'tanggal_pemasangan' => 'date', // atau 'datetime'
+        'tanggal_pembayaran' => 'date',
+    ];
 
     // Relasi (optional, jika ingin relasi ke tabel lain)
     public function pelanggan()
@@ -24,5 +24,9 @@ protected $casts = [
     public function produk()
     {
         return $this->belongsTo(Produk::class);
+    }
+    public function gangguans()
+    {
+        return $this->hasMany(Gangguan::class);
     }
 }

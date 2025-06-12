@@ -251,11 +251,7 @@
                             <div data-i18n="Input groups">Perangkat Saya</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="forms-input-groups.html" class="menu-link">
-                            <div data-i18n="Input groups">Pembelian Saya</div>
-                        </a>
-                    </li>
+                    
                 </ul>
             </li>
 
@@ -278,6 +274,13 @@
 
             <!-- Misc -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+            <li class="menu-item">
+                <a href="{{route('gangguanUser')}}"
+                    class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-error"></i>
+                    <div data-i18n="Support">Gangguan</div>
+                </a>
+            </li>
             <li class="menu-item">
                 <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
                     class="menu-link">

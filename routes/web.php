@@ -73,4 +73,11 @@ Route::prefix('/home/produk')->controller(ProdukController::class)->group(functi
 
 Route::prefix('/home/layananUser')->controller(ClientController::class)->group(function () {
     Route::get('/perangkatSaya', 'perangkatSaya')->name('perangkatSaya');
+    Route::get('/perangkatSaya/{id}/detailPerangkat', 'detailPerangkat')->name('detailPerangkat');
+})->middleware(['can:isUser']);
+
+Route::prefix('/home/misc')->controller(ClientController::class)->group(function () {
+    Route::get('/gangguanUser', 'gangguanUser')->name('gangguanUser');
+    Route::post('/uploadGangguan', 'uploadGangguan')->name('uploadGangguan');
+
 })->middleware(['can:isUser']);

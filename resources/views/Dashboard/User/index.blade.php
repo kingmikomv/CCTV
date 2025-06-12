@@ -29,28 +29,39 @@
                 <div class="col-lg-8 mb-4 order-0">
                   <div class="card">
                     <div class="d-flex align-items-end row">
-                      <div class="col-sm-7">
-                        <div class="card-body">
-                          <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
-                          <p class="mb-4">
-                            You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
-                            your profile.
-                          </p>
-
-                          <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-                        </div>
-                      </div>
-                      <div class="col-sm-5 text-center text-sm-left">
-                        <div class="card-body pb-0 px-0 px-md-4">
-                          <img
-                            src="{{ asset('DHS/assets/img/illustrations/man-with-laptop-light.png') }}"
-                            height="140"
-                            alt="View Badge User"
-                            data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                            data-app-light-img="illustrations/man-with-laptop-light.png"
-                          />
-                        </div>
-                      </div>
+                      @php
+                      $jam = \Carbon\Carbon::now()->format('H');
+                      $waktu = match (true) {
+                      $jam >= 5 && $jam < 12=> 'Selamat pagi',
+                        $jam >= 12 && $jam < 15=> 'Selamat siang',
+                          $jam >= 15 && $jam < 18=> 'Selamat sore',
+                            $jam >= 18 || $jam < 5=> 'Selamat malam',
+                              };
+                              @endphp
+  
+                              <div class="col-sm-7">
+                                <div class="card-body">
+                                  <h5 class="card-title text-primary">
+                                    {{ $waktu }}, {{ Auth::user()->name }}! 👋
+                                  </h5>
+                                  <p class="mb-4">
+                                    Sekarang pukul <span class="fw-bold">{{ \Carbon\Carbon::now()->format('H:i')
+                                      }}</span>.
+                                    Semoga harimu menyenangkan 🎉
+                                  </p>
+  
+  
+                                </div>
+                              </div>
+  
+                              <div class="col-sm-5 text-center text-sm-left">
+                                <div class="card-body pb-0 px-0 px-md-4">
+                                  <img src="{{ asset('DHS/assets/img/illustrations/man-with-laptop-light.png') }}"
+                                    height="140" alt="View Badge User"
+                                    data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                    data-app-light-img="illustrations/man-with-laptop-light.png" />
+                                </div>
+                              </div>
                     </div>
                   </div>
                 </div>
